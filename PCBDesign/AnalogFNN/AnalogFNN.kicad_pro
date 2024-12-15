@@ -434,7 +434,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "AnalogFNN.dsn",
       "step": "",
       "vrml": ""
     },
