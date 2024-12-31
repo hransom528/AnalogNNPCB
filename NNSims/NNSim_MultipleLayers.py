@@ -124,11 +124,14 @@ learning_rate = 1e-3
 epochs = 5
 loss_fn = nn.CrossEntropyLoss() # Initialize the loss function TODO: Determine correct loss function
 models = []
+optimizers = []
 for layerCount in range(2, 7):
     model = NeuralNetwork(layerCount).to(device) # Initialize neural network onto compute device
     print(model)
     models.append(model)
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) # Initialize optimizer based on model parameters
+
+    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) # Initialize optimizer based on model parameters
+    optimizers.append(optimizer)
 
 # Neural Network Training
 def train_loop(dataloader, model, loss_fn, optimizer):
@@ -183,9 +186,9 @@ loss_vectors = []
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
     for i in range(len(models)):
-        losses = train_loop(train_dataloader, model, loss_fn, optimizer)
+        losses = train_loop(train_dataloader, models[i], loss_fn, optimizers[i])
         #loss_vectors.append(losses)
-        accuracy = test_loop(test_dataloader, model, loss_fn)
+        accuracy = test_loop(test_dataloader, models[i], loss_fn)
         accuracies[i, t] = accuracy
 print("Done!")
 
