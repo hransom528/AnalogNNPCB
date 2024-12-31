@@ -3,59 +3,79 @@
 # 12/16/2024
 
 # Imports
-import os
 import torch
 import pandas as pd
 import numpy as np
 from torch import nn
-from torch.utils.data import DataLoader, TensorDataset
-from torchvision import datasets, transforms
+from torch.utils.data import DataLoader, TensorDataset, Subset, random_split
+#from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 # Ignore warnings
 import warnings
 warnings.filterwarnings("ignore")
 
 # Import dataset
+print("Loading dataset...")
 heart_df = pd.read_csv("./ecg-arrhythmia-classification-dataset/MIT-BIH-Arrhythmia-Database.csv")
 
 # Encode type column
+print("Processing dataset...")
 type_col = heart_df["type"].to_numpy()
 type_mat = np.zeros((len(type_col), 5))
 #print(np.unique(type_col))
 for i in range(len(type_col)):
     item = type_col[i]
     if (item == "F"):
-        type_mat[i] = np.array([0,0,0,0,1])
+        type_mat[i] = np.array([0,0,0,0,1]) #1
     elif (item == "N"):
-        type_mat[i] = np.array([0,0,0,1,0])
+        type_mat[i] = np.array([0,0,0,1,0]) #2
     elif (item == "Q"):
-        type_mat[i] = np.array([0,0,1,0,0])
+        type_mat[i] = np.array([0,0,1,0,0]) #3
     elif (item == "SVEB"):
-        type_mat[i] = np.array([0,1,0,0,0])
+        type_mat[i] = np.array([0,1,0,0,0]) #4
     elif (item == "VEB"):
-        type_mat[i] = np.array([1,0,0,0,0])
+        type_mat[i] = np.array([1,0,0,0,0]) #5
 
 # Remove unnecessary columns
 heart_df = heart_df.drop("record", axis=1)
 heart_df = heart_df.drop("type", axis=1)
 
 # Encode data into tensor objects
+print("Encoding data...")
+TEST_SIZE = 0.1
+SEED = np.random.randint(0, 4294967294, dtype=np.uint32)
 heart_df_mat = heart_df.to_numpy()
-training_data = torch.tensor(heart_df_mat[:90000]).type(torch.double)
-test_data = torch.tensor(heart_df_mat[90001:]).type(torch.double)
+data = TensorDataset(torch.tensor(heart_df_mat).type(torch.double), torch.tensor(type_mat).type(torch.double))
+#stratums = np.unique(type_mat, axis=0)
+train_indices, test_indices, _, _ = train_test_split(
+    range(len(data)),
+    type_mat,
+    #stratify=type_mat,
+    test_size=TEST_SIZE,
+    random_state=SEED
+)
 
+# Generate subset based on indices
+batch_size = 1
+train_split = Subset(data, train_indices)
+test_split = Subset(data, test_indices)
+train_dataloader = DataLoader(train_split, batch_size=batch_size, shuffle=True)
+test_dataloader = DataLoader(test_split, batch_size=batch_size, shuffle=True)
+
+#training_data, test_data = random_split(heart_df, [0.8, 0.2])
+#training_data = torch.tensor(heart_df_mat[:90000]).type(torch.double)
+#test_data = torch.tensor(heart_df_mat[90001:]).type(torch.double)
 # Encode labels into tensor objects
-training_labels = torch.tensor(type_mat[:90000]).type(torch.double)
-test_labels = torch.tensor(type_mat[90001:]).type(torch.double)
-
+#training_labels = torch.tensor(type_mat[:90000]).type(torch.double)
+#test_labels = torch.tensor(type_mat[90001:]).type(torch.double)
 # Encode data and label tensors into datasets
-train_dataset = TensorDataset(training_data, training_labels)
-test_dataset = TensorDataset(test_data, test_labels)
-
+#train_dataset = TensorDataset(training_data, training_labels)
+#test_dataset = TensorDataset(test_data, test_labels)
 # Load datasets into dataloaders
-train_dataloader = DataLoader(train_dataset, batch_size=1)
-test_dataloader = DataLoader(test_dataset, batch_size=1)
+#train_dataloader = DataLoader(train_dataset, batch_size=1)
+#test_dataloader = DataLoader(test_dataset, batch_size=1)
 
 # Determine compute device being used
 device = (
@@ -85,7 +105,6 @@ class NeuralNetwork(nn.Module):
             nn.Linear(6, 6),
             nn.Sigmoid(),
             nn.Linear(6, 5),
-            nn.Sigmoid()
         )
 
     def forward(self, x):
@@ -94,7 +113,6 @@ class NeuralNetwork(nn.Module):
         return logits
 
 learning_rate = 1e-3
-batch_size = 64
 epochs = 5
 loss_fn = nn.CrossEntropyLoss() # Initialize the loss function TODO: Determine correct loss function
 model = NeuralNetwork().to(device) # Initialize neural network onto compute device
@@ -118,7 +136,7 @@ def train_loop(dataloader, model, loss_fn, optimizer):
         optimizer.zero_grad()
 
         losses = []
-        if batch % 100 == 0:
+        if batch % 1000 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
             losses.append(loss)
@@ -139,6 +157,7 @@ def test_loop(dataloader, model, loss_fn):
         for X, y in dataloader:
             pred = model(X.to(torch.float32))
             test_loss += loss_fn(pred, y).item()
+            #print(torch.argmax(pred), torch.argmax(y))
             if (torch.argmax(pred) == torch.argmax(y)):
                 correct += 1
 
