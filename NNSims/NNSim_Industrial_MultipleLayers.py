@@ -6,11 +6,14 @@
 import torch
 import pandas as pd
 import numpy as np
+
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset, Subset, random_split
 #from torchvision import datasets, transforms
+
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split # Data splitting
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay # Confusion matrix
 
 # Ignore warnings
 import warnings
@@ -18,41 +21,20 @@ warnings.filterwarnings("ignore")
 
 # Import dataset
 print("Loading dataset...")
-heart_df = pd.read_csv("./ecg-arrhythmia-classification-dataset/MIT-BIH-Arrhythmia-Database.csv")
-
-# Encode type column
-print("Processing dataset...")
-type_col = heart_df["type"].to_numpy()
-type_mat = np.zeros((len(type_col), 5))
-#print(np.unique(type_col))
-for i in range(len(type_col)):
-    item = type_col[i]
-    if (item == "F"):
-        type_mat[i] = np.array([0,0,0,0,1]) #1
-    elif (item == "N"):
-        type_mat[i] = np.array([0,0,0,1,0]) #2
-    elif (item == "Q"):
-        type_mat[i] = np.array([0,0,1,0,0]) #3
-    elif (item == "SVEB"):
-        type_mat[i] = np.array([0,1,0,0,0]) #4
-    elif (item == "VEB"):
-        type_mat[i] = np.array([1,0,0,0,0]) #5
-
-# Remove unnecessary columns
-heart_df = heart_df.drop("record", axis=1)
-heart_df = heart_df.drop("type", axis=1)
+industrial_df = pd.read_csv("./IndustrialDataset/data.csv")
+labels = industrial_df["fail"].to_numpy()
+industrial_df.drop("fail", axis=1, inplace=True)
 
 # Encode data into tensor objects
 print("Encoding data...")
 TEST_SIZE = 0.1
 SEED = np.random.randint(0, 4294967294, dtype=np.uint32)
-heart_df_mat = heart_df.to_numpy()
-data = TensorDataset(torch.tensor(heart_df_mat).type(torch.double), torch.tensor(type_mat).type(torch.double))
-#stratums = np.unique(type_mat, axis=0)
+industrial_df_mat = industrial_df.to_numpy()
+data = TensorDataset(torch.tensor(industrial_df_mat).to(torch.long), torch.tensor(labels).to(torch.long))
 train_indices, test_indices, _, _ = train_test_split(
     range(len(data)),
-    type_mat,
-    #stratify=type_mat,
+    labels,
+    stratify=labels,
     test_size=TEST_SIZE,
     random_state=SEED
 )
@@ -63,19 +45,6 @@ train_split = Subset(data, train_indices)
 test_split = Subset(data, test_indices)
 train_dataloader = DataLoader(train_split, batch_size=batch_size, shuffle=True)
 test_dataloader = DataLoader(test_split, batch_size=batch_size, shuffle=True)
-
-#training_data, test_data = random_split(heart_df, [0.8, 0.2])
-#training_data = torch.tensor(heart_df_mat[:90000]).type(torch.double)
-#test_data = torch.tensor(heart_df_mat[90001:]).type(torch.double)
-# Encode labels into tensor objects
-#training_labels = torch.tensor(type_mat[:90000]).type(torch.double)
-#test_labels = torch.tensor(type_mat[90001:]).type(torch.double)
-# Encode data and label tensors into datasets
-#train_dataset = TensorDataset(training_data, training_labels)
-#test_dataset = TensorDataset(test_data, test_labels)
-# Load datasets into dataloaders
-#train_dataloader = DataLoader(train_dataset, batch_size=1)
-#test_dataloader = DataLoader(test_dataset, batch_size=1)
 
 # Determine compute device being used
 device = (
@@ -100,29 +69,38 @@ class NeuralNetwork(nn.Module):
         
         if (numLayers == 2):
             self.linear_stack = nn.Sequential(
-                nn.Linear(32, 6),
+                nn.Linear(9, 6),
                 nn.Sigmoid(),
-                nn.Linear(6, 5)
+                nn.Linear(6, 1),
+                nn.Sigmoid()
             )
         else:
             self.linear_stack = []
-            self.linear_stack.append(nn.Linear(32, 6))
+            self.linear_stack.append(nn.Linear(9, 6))
             self.linear_stack.append(nn.Sigmoid())
             for i in range(numLayers - 2):
                 self.linear_stack.append(nn.Linear(6, 6))
                 self.linear_stack.append(nn.Sigmoid())
-            self.linear_stack.append(nn.Linear(6, 5))
-            self.linear_stack = nn.Sequential(self.linear_stack)
+            self.linear_stack.append(nn.Linear(6, 1))
+            self.linear_stack.append(nn.Sigmoid())
+            self.linear_stack = nn.Sequential(*self.linear_stack)
 
     def forward(self, x):
         x = self.flatten(x)
         logits = self.linear_stack(x)
         return logits
 
+# Hinge Loss
+def HingeLoss(pred, y):
+    if (y == 0):
+        y = -1
+    return torch.max(torch.tensor(0), 1 - pred*y)
+
 # Initialize the models with given hyperparameters
-learning_rate = 1e-3
-epochs = 5
-loss_fn = nn.CrossEntropyLoss() # Initialize the loss function TODO: Determine correct loss function
+learning_rate = 1e-6
+momentum = 0.9
+epochs = 10
+loss_fn = nn.BCELoss() # Initialize the loss function
 models = []
 optimizers = []
 for layerCount in range(2, 7):
@@ -140,17 +118,20 @@ def train_loop(dataloader, model, loss_fn, optimizer):
     # Unnecessary in this situation but added for best practices
     model.train()
     for batch, (X, y) in enumerate(dataloader):
+        optimizer.zero_grad()
+
         # Compute prediction and loss
-        pred = model(X.to(torch.float32))
+        pred = model(X.to(torch.float32)).squeeze()
+        #pred = torch.round(pred)
+        y = y.squeeze().to(torch.float32)
         loss = loss_fn(pred, y)
 
         # Backpropagation
         loss.backward()
         optimizer.step()
-        optimizer.zero_grad()
-
+        
         losses = []
-        if batch % 1000 == 0:
+        if batch % 100 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
             losses.append(loss)
@@ -167,41 +148,62 @@ def test_loop(dataloader, model, loss_fn):
 
     # Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode
     # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
+    y_test = []
+    predictions = []
+    
     with torch.no_grad():
         for X, y in dataloader:
-            pred = model(X.to(torch.float32))
+            pred = model(X.to(torch.float32)).squeeze()
+            y = y.squeeze().to(torch.float32)
             test_loss += loss_fn(pred, y).item()
-            #print(torch.argmax(pred), torch.argmax(y))
-            if (torch.argmax(pred) == torch.argmax(y)):
+
+            if (torch.round(pred) == y):
                 correct += 1
+            
+            y_test.append(y)
+            predictions.append(torch.round(pred))
 
     test_loss /= num_batches
     correct /= size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
-    return 100*correct
+    return 100*correct, y_test, predictions
 
 # Train and test model
-accuracies = np.zeros(5)
-loss_vectors = []
+accuracies = np.zeros((5, epochs))
+#loss_vectors = []
+y_tests = []
+prediction_sets = []
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
     for i in range(len(models)):
+        print(f"Model {i+2}")
         losses = train_loop(train_dataloader, models[i], loss_fn, optimizers[i])
         #loss_vectors.append(losses)
-        accuracy = test_loop(test_dataloader, models[i], loss_fn)
+        accuracy, y_test, predictions = test_loop(test_dataloader, models[i], loss_fn)
         accuracies[i, t] = accuracy
+
+        # Save data for confusion matrices on last epoch
+        if (t == epochs - 1):
+            y_tests.append(y_test)
+            prediction_sets.append(predictions)
 print("Done!")
 
 # Plot accuracy and training loss over time
 x = np.arange(epochs)+1
 for i in range(len(models)):
-    plt.plot(x, accuracies[i], label=f"model{i+2}")
-plt.title("ECG Anomaly Detection Accuracy")
+    plt.plot(x, accuracies[i], label=f"{i+2} Layers")
+plt.title("Industrial Machine Anomaly Detection Accuracy")
 plt.ylim([0, 100])
 plt.xlabel("Epoch")
 plt.ylabel("Accuracy")
 plt.legend()
 plt.show()
+
+# Generate confusion matrices
+for i in range(len(models)):
+    cm = confusion_matrix(y_tests[i], prediction_sets[i])
+    ConfusionMatrixDisplay(cm).plot()
+    plt.show()
 
 '''
 plt.figure()
