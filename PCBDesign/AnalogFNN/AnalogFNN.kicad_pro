@@ -479,124 +479,120 @@
       ""
     ],
     [
-      "90a6cc8c-4a31-4258-97fa-7d7e9174dc5e",
-      "Neuron6_in1"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
     ],
     [
-      "a8526b7d-ed26-457e-8b55-e9fd44c0c978",
-      "Neuron6_in2"
+      "b2187f23-1ab6-476a-a082-5be59b9561c9",
+      "NeuronWeightCtrl27"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "59aac45e-15b6-4818-9382-fa143dd73683",
+      "NeuronWeightCtrl28"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "0e2bf2f5-cbc4-4aae-9944-4347b42bf4a9",
+      "NeuronWeightCtrl29"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "73c201e9-91d7-46b9-86a8-c7a3936eb1d4",
+      "NeuronWeightCtrl30"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "385dd054-8a69-4f24-bb95-e8f5f843f795",
+      "NeuronWeightCtrl31"
     ],
     [
-      "1b45842d-bb78-4b0e-bc5f-8b684eedb24f",
-      "Neuron6_in3"
+      "b2cfcd0a-bea6-4d14-b364-b7d9982c1056",
+      "NeuronWeightCtrl32"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
     ],
     [
-      "23530b74-172b-44de-992c-013cdb820bac",
-      "Neuron6_in4"
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
     ],
     [
-      "cbc1187d-6af7-4595-b412-9967d99a3258",
-      "Neuron6_in5"
+      "a64ea125-b0c5-45b0-93df-5f35205712cb",
+      "InNeuron_2"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
     ],
     [
-      "fd48a4b1-d634-419c-a903-aecc07bae0f7",
-      "Neuron6_in6"
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
-    ],
-    [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "7ca1ed9c-931e-42e1-b4e9-233e6740e317",
+      "InNeuron_3"
     ],
     [
       "c2ad8481-b144-43cf-8f27-47edecbc3614",
@@ -999,84 +995,84 @@
       "DualNode9"
     ],
     [
-      "2e36e321-628d-4721-b784-80c8c1f7523d",
-      "Neuron6_21"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
     ],
     [
-      "924d5971-8547-4aca-8436-260728db7a66",
-      "Neuron6_22"
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "e9618271-93f4-488b-9b1b-800218deff06",
+      "InNeuron_4"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "9906ba62-b646-4787-8ba1-bb3cc4b0dbd2",
-      "Neuron6_23"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "239809df-6116-44b8-abb4-16876bbc64ca",
+      "InNeuron_1"
     ],
     [
-      "f10ecc26-52ad-44db-a9c4-1cf1302e2dd2",
-      "Neuron6_24"
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
     ],
     [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
+      "cdcdf8ec-1e8a-45ab-aea5-5bc23c469fd5",
+      "InNeuron_5"
     ],
     [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
+      "dde10fe9-667f-4728-bd31-9b9d162c53f9",
+      "DualNode2"
     ],
     [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
+      "c02a7ad8-3879-4b6d-aac3-a744bb145751",
+      "Adder3"
     ],
     [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
+      "7032a236-556e-4aec-80b7-164aa8d81ea1",
+      "DualNode3"
     ],
     [
       "2637ad82-97bc-4e85-b018-b55ead3b3eab",
@@ -1187,24 +1183,28 @@
       "NeuronWeightCtrl26"
     ],
     [
-      "1b37d573-8585-4662-a0fc-15d3d7c1edb9",
-      "NeuronWeightCtrl27"
-    ],
-    [
-      "86f6c724-017e-4af0-91b0-2e079e2b31c1",
-      "NeuronWeightCtrl28"
-    ],
-    [
-      "be1a6436-0ddb-4503-8693-a146b7d4d6b3",
-      "NeuronWeightCtrl29"
-    ],
-    [
-      "075afb4b-6b49-4e06-af61-8a0ec7957fe5",
-      "NeuronWeightCtrl30"
-    ],
-    [
       "7ae1f7a3-f1ff-4d66-b217-f1e57abe7ec4",
       "WeightCtrlChipSel"
+    ],
+    [
+      "db300dab-62d5-49ad-813e-430113f82d75",
+      "DualNode1"
+    ],
+    [
+      "4ea8f3b7-3437-4766-ba66-5dc9089a22ce",
+      "DualNode6"
+    ],
+    [
+      "f9100670-94a3-4e28-9666-7e65ac9e9044",
+      "DualNode5"
+    ],
+    [
+      "870f8dba-f1b8-42d9-a378-5ed45efff5c5",
+      "DualNode4"
+    ],
+    [
+      "45400bcd-ceb2-4c0c-84af-340d6b5784b0",
+      "InNeuron_6"
     ]
   ],
   "text_variables": {}
