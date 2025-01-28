@@ -523,6 +523,42 @@
       "NeuronWeightCtrl32"
     ],
     [
+      "35ab9ba9-d510-4ee3-9488-262d88d57ef8",
+      "AdderOut1"
+    ],
+    [
+      "283c0be4-35af-469f-8354-4f8747507665",
+      "DualNode14"
+    ],
+    [
+      "ecfd9b4a-0b2c-4161-9532-8054cd9a121b",
+      "DualNode12"
+    ],
+    [
+      "d5737086-bf39-49d0-bb9c-62e5ee5a746b",
+      "DualNode13"
+    ],
+    [
+      "35ab9ba9-d510-4ee3-9488-262d88d57ef8",
+      "AdderOut1"
+    ],
+    [
+      "283c0be4-35af-469f-8354-4f8747507665",
+      "DualNode14"
+    ],
+    [
+      "ecfd9b4a-0b2c-4161-9532-8054cd9a121b",
+      "DualNode12"
+    ],
+    [
+      "d5737086-bf39-49d0-bb9c-62e5ee5a746b",
+      "DualNode13"
+    ],
+    [
+      "357e799b-820b-45fe-a4ef-bc180ae97445",
+      "OutNeuron_2"
+    ],
+    [
       "dde10fe9-667f-4728-bd31-9b9d162c53f9",
       "DualNode2"
     ],
@@ -955,46 +991,6 @@
       "DualNode9"
     ],
     [
-      "9f34af2e-bd13-402e-abea-298b399da1cb",
-      "Neuron6_19"
-    ],
-    [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
-    ],
-    [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
-    ],
-    [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
-    ],
-    [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
-    ],
-    [
-      "f79c2afa-6a8b-48bb-8717-4a7d393af66a",
-      "Neuron6_20"
-    ],
-    [
-      "b4d8473b-4ec0-4a73-b9ff-f0c2a4aa1b54",
-      "DualNode10"
-    ],
-    [
-      "dc3b554f-72b2-4974-b322-d2c841c83381",
-      "Adder2"
-    ],
-    [
-      "e88f5c7c-bbe5-488d-9857-510fd90cd4b5",
-      "DualNode11"
-    ],
-    [
-      "3e881310-5934-4b45-92a3-1fcbfc4cd036",
-      "DualNode9"
-    ],
-    [
       "dde10fe9-667f-4728-bd31-9b9d162c53f9",
       "DualNode2"
     ],
@@ -1137,6 +1133,10 @@
     [
       "a51792df-c246-448a-9f94-b2ac5d879c6e",
       "NeuronWeightCtrl15"
+    ],
+    [
+      "c1742298-db84-4cb0-8a1a-b6d0183b59fc",
+      "OutNeuron_1"
     ],
     [
       "f476f52f-ffcc-4490-93b3-b345e28dbdd3",
