@@ -4257,7 +4257,7 @@
           (reference "Q6") (unit 2) (value "IRF7324") (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
         )
         (path "/5753d205-92a2-45c3-85ce-1d2291faf906/c1742298-db84-4cb0-8a1a-b6d0183b59fc/283c0be4-35af-469f-8354-4f8747507665"
-          (reference "Q5") (unit 2) (value "IRF7324") (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
+          (reference "Q4") (unit 2) (value "IRF7324") (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
         )
         (path "/5753d205-92a2-45c3-85ce-1d2291faf906/357e799b-820b-45fe-a4ef-bc180ae97445/283c0be4-35af-469f-8354-4f8747507665"
           (reference "Q7") (unit 2) (value "IRF7324") (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
